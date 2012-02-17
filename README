@@ -1,0 +1,55 @@
+=head2 C<project-example>: XtratuM Project example
+
+-I<This example shows the development process from the point of view of the integrator and the partition developers.>
+
+=head3 Partition definition:
+
+This example is a template of the development process under XtratuM. The
+example assumes that the partition developers and the integrator have already
+agreed about the system configuration, so they have access to the XML
+configuration file.
+
+=head4 Partition developers:
+
+The "partition1" directory contains the project of the partition developer.
+This directory contains the essential elements to construct a XAL partition.
+The input elements are the XML configuration file. Partition developers must
+define the configuration on the "partition1/config.mk" file, namely, the paths
+to the XtratuM tools for creating a partition and a reference to the
+configuration file. The project sources are contained under the directory
+"partition1/src". The partition developer may define the directory structrue he
+considers for the project sources. At the root directory of the project, there
+is a makefile which takes the linked application and translates it to a XEF
+file. The linkage of the application has been automatized on this example, but
+experienced developers may link their applications as they require, with the
+only constraint of confining them into their allocated memory areas (on the XML
+file). 
+
+=head4 Dummy Partition development:
+
+During partition development, it can happen that a partition developer
+does not have access to the other partitions developed.
+And yet partition developers need to test and run their own partition,
+in this case the suggested approach is to replace the missing partitions
+with dummy partitions that simply spend it's partition time on a endless loop.
+This allows each partition developer to work with independence of the other
+partition developers.
+
+In the case of dependences between partitions a similar approach can be
+followed to provide a dummy implementation of the required dependences.
+
+=head4 Integrator:
+
+After the partition developers supply their linked applications, the integrator
+packs all the items: the partition XEFs, the XtratuM core and the system
+configuration. This process has been automatized as much as was possible on the
+integrator project under the directory "integration". The Makefile of the
+project contains all the necessary rules to create a bootable image of the
+system, i.e., the resident_sw image. 
+
+=head3 Configuration:
+
+This project is related to the development process and, so, the XML
+configuration is out of the scope of the example.  Nevertheless, this example
+is ready to be used as far as the paths are correctly defined.
+
